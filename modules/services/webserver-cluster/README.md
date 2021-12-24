@@ -1,0 +1,9 @@
+如果你尝试使用内联块和独立资源，会因为路由规则冲突和互相覆盖而出现错误。因为必须使用二者之一。
+在创建模块时由于这个限制，应始终尝试使用单独的资源而不是内联块。否则，模块将缺乏灵活性和可配置性。
+
+例：如果将aws_security_group中所有入口和出口规则定义为单独的aws_security_group_rule资源，可以使模块具有足够的灵活性，允许用户在模块外添加自定义规则。要做到这一点，需要将aws_security_group的ID导出为输出变量。
+
+以下Terraform资源也存在相同的内联块问题：
+1.aws_security_group和aws_security_group_rule
+2.aws_route_table和aws_route
+3.aws_network_acl和aws_network_acl_rule
